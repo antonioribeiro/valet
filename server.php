@@ -50,9 +50,11 @@ $uri = urldecode(
 );
 
 $siteName = basename(
-    // Filter host to support wildcard dns feature
-    valet_support_wildcard_dns($_SERVER['HTTP_HOST']),
-    '.'.$valetConfig['domain']
+    basename(
+        // Filter host to support wildcard dns feature
+        valet_support_wildcard_dns($_SERVER['HTTP_HOST']),
+        '.'.$valetConfig['tld']
+    ), '.'.$valetConfig['park_tld']
 );
 
 if (strpos($siteName, 'www.') === 0) {
